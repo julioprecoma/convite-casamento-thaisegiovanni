@@ -1,0 +1,294 @@
+@font-face {
+  font-family: "Asfire";
+  src: url("../fonts/Asfire.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("../fonts/PlayfairDisplay.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --ink: #2d2430;
+  --deep: #231d24;
+  --aubergine: #3f2d46;
+  --purple-line: #8a5b83;
+  --paper: #ede5db;
+  --paper-deep: #b9aa96;
+  --gold: #b28a47;
+  --mist: rgba(248, 244, 238, 0.82);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: #eee7df;
+  color: var(--ink);
+  font-family: "Playfair Display", Georgia, serif;
+  overflow: hidden;
+}
+
+a { color: inherit; }
+button { font: inherit; }
+
+.home-shell,
+.intro,
+.menu-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.intro {
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.82), transparent 34%),
+    linear-gradient(155deg, #e9dfd2 0%, #f6f1eb 50%, #cfc0ae 100%);
+  transition: opacity 900ms ease, visibility 900ms ease;
+}
+
+.intro-bg {
+  position: absolute;
+  inset: -8%;
+  background-image: url("../img/envelope-reference.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: .13;
+  filter: blur(10px) saturate(.9);
+  transform: scale(1.04);
+}
+
+.open-invitation {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 30px;
+  width: min(88vw, 380px);
+  padding: 24px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tap-label {
+  position: relative;
+  z-index: 2;
+  color: rgba(45,36,48,.9);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(16px, 4.3vw, 22px);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  opacity: .88;
+  transform: translateY(10px);
+  animation: pulseText 2.6s ease-in-out infinite;
+}
+
+.envelope-stage {
+  position: relative;
+  display: block;
+  width: min(88vw, 380px);
+  aspect-ratio: 360 / 260;
+}
+
+.envelope-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.env-base, .env-left, .env-right, .env-bottom, .env-flap {
+  fill: url(#paperFill);
+  stroke: rgba(91, 62, 86, .42);
+  stroke-width: 1.2;
+}
+
+.env-flap {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transition: transform 1000ms cubic-bezier(.18,.74,.22,1), opacity 600ms ease;
+}
+
+.envelope-lines path {
+  fill: none;
+  stroke: var(--purple-line);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 430;
+  stroke-dashoffset: 430;
+  opacity: .68;
+  animation: drawLine 1800ms cubic-bezier(.3,.78,.28,1) forwards;
+}
+
+.line-2 { animation-delay: 150ms !important; }
+.line-3 { animation-delay: 280ms !important; }
+.line-4 { animation-delay: 420ms !important; }
+
+.emerging-card {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: translateY(76px) scale(.58);
+  clip-path: inset(0 round 4px);
+}
+
+body.opening .tap-label {
+  animation: none;
+  opacity: 0;
+  transform: translateY(-14px);
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+
+body.opening .env-flap {
+  transform: rotateX(160deg) translateY(-10px);
+  opacity: .72;
+}
+
+body.opening .emerging-card {
+  animation: cardEmerges 1250ms 480ms cubic-bezier(.16,.75,.18,1) forwards;
+}
+
+body.home-ready .intro {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.menu-screen {
+  z-index: 1;
+  display: grid;
+  align-items: center;
+  justify-items: end;
+  padding: max(26px, env(safe-area-inset-top)) clamp(26px, 7vw, 70px) max(32px, env(safe-area-inset-bottom)) 24px;
+  background: #eee8df;
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+
+body.home-ready .menu-screen {
+  opacity: 1;
+}
+
+.church-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, rgba(246,242,235,.28) 0%, rgba(238,230,220,.55) 48%, rgba(35,29,36,.36) 100%),
+    url("../img/church-bg.jpg");
+  background-size: cover;
+  background-position: 45% center;
+  filter: saturate(.92) contrast(.98);
+  transform: scale(1.025);
+}
+
+.church-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.05)),
+    radial-gradient(circle at 18% 35%, rgba(255,255,255,.32), transparent 42%);
+}
+
+.main-menu {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: clamp(11px, 2.2svh, 18px);
+  text-align: right;
+  padding: 8px 0;
+}
+
+.main-menu a {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: rgba(43,34,45,.95);
+  font-size: clamp(27px, 8vw, 46px);
+  line-height: .98;
+  letter-spacing: .03em;
+  text-shadow: 0 1px 18px rgba(255,255,255,.8);
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+body.home-ready .main-menu a {
+  animation: menuIn 650ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+body.home-ready .main-menu a:nth-child(1) { animation-delay: 160ms; }
+body.home-ready .main-menu a:nth-child(2) { animation-delay: 240ms; }
+body.home-ready .main-menu a:nth-child(3) { animation-delay: 320ms; }
+body.home-ready .main-menu a:nth-child(4) { animation-delay: 400ms; }
+body.home-ready .main-menu a:nth-child(5) { animation-delay: 480ms; }
+body.home-ready .main-menu a:nth-child(6) { animation-delay: 560ms; }
+body.home-ready .main-menu a:nth-child(7) { animation-delay: 640ms; }
+body.home-ready .main-menu a:nth-child(8) { animation-delay: 720ms; }
+
+.main-menu a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background: rgba(138,91,131,.58);
+  transition: width 280ms ease;
+}
+
+.main-menu a:focus-visible,
+.open-invitation:focus-visible {
+  outline: 2px solid rgba(138,91,131,.7);
+  outline-offset: 8px;
+}
+
+.main-menu a:hover::after,
+.main-menu a:focus-visible::after {
+  width: 100%;
+}
+
+@keyframes drawLine { to { stroke-dashoffset: 0; } }
+@keyframes pulseText {
+  0%, 100% { opacity: .68; }
+  50% { opacity: 1; }
+}
+@keyframes cardEmerges {
+  0% { opacity: 0; transform: translateY(76px) scale(.58) rotate(-1deg); }
+  30% { opacity: 1; }
+  100% { opacity: 1; transform: translateY(-92px) scale(1.08) rotate(0deg); }
+}
+@keyframes menuIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@media (min-width: 760px) {
+  .open-invitation { width: min(58vw, 500px); }
+  .envelope-stage { width: min(58vw, 500px); }
+  .menu-screen { padding-right: 10vw; }
+  .main-menu a { font-size: clamp(34px, 4.8vw, 64px); }
+}
+
+@media (max-height: 640px) {
+  .main-menu { gap: 8px; }
+  .main-menu a { font-size: clamp(23px, 6.4vw, 34px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
