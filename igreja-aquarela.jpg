@@ -1,0 +1,12 @@
+const openButton = document.getElementById('openInvitation');
+
+function openHome() {
+  document.body.classList.add('opened');
+  openButton.setAttribute('aria-label', 'Convite aberto');
+}
+
+openButton.addEventListener('click', openHome);
+openButton.addEventListener('touchstart', () => {}, { passive: true });
+
+// Durante testes, remova o comentário abaixo para abrir o menu automaticamente.
+// setTimeout(openHome, 700);
