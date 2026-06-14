@@ -1,1 +1,27 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>presenca</title><style>body{margin:0;min-height:100svh;display:grid;place-items:center;background:#f7f0eb;color:#7b5a83;font-family:Georgia,serif;text-align:center;padding:32px}a{color:#7b5a83}.box{border:1px solid rgba(105,76,111,.45);border-radius:18px;padding:28px;background:#fffaf5;box-shadow:0 12px 28px rgba(73,52,76,.08)}h1{text-transform:capitalize;letter-spacing:.08em;font-weight:400}</style></head><body><div class="box"><h1>presenca</h1><p>Página reservada para a próxima etapa.</p><p><a href="index.html">Voltar para o menu</a></p></div></body></html>
+# Marco 0 — Home final
+
+Versão funcional da Home conforme o modelo aprovado:
+
+- Envelope inicial grande, com linhas finas e selo roxo.
+- Clique/toque abre o convite suavemente.
+- Igreja em aquarela como plano de fundo do menu.
+- Menu em botões à direita, com ícones e seta.
+- Rolagem habilitada apenas quando a tela do celular não comportar todos os botões.
+- Layout responsivo para retrato e paisagem.
+
+## Como publicar no GitHub Pages
+
+1. Descompacte o ZIP.
+2. Envie o conteúdo da pasta para a raiz do repositório.
+3. Confirme que `index.html` está na raiz.
+4. Abra a URL do GitHub Pages com cache busting, por exemplo:
+
+`https://julioprecoma.github.io/convite-casamento-thaisegiovanni/?v=9`
+
+## Arquivo principal
+
+A Home está toda no `index.html`.
+
+A imagem da igreja usada como fundo está em:
+
+`assets/img/igreja-aquarela-soft.png`
