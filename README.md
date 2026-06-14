@@ -1,84 +1,81 @@
-# Thaís & Giovanni — Home v3
+# Thaís e Giovanni — Home v2
 
-Versão ajustada para reproduzir a referência aprovada:
-
-- envelope com linhas finas;
-- aba superior sem transparência;
-- menu em botões laterais;
-- igreja posicionada no canto inferior esquerdo;
-- botões sobrepondo a área da árvore;
-- ramos florais laterais em CSS;
-- layout mobile-first sem rolagem.
-
-## Como publicar no GitHub Pages
-
-1. Descompacte o ZIP.
-2. Envie todo o conteúdo para a raiz do repositório.
-3. Confirme que o arquivo `index.html` está na raiz.
-4. No GitHub: Settings → Pages → Deploy from a branch → `main` → `/root`.
-5. Acesse:
-
-`https://julioprecoma.github.io/convite-casamento-thaisegiovanni/`
+Primeira página do convite em HTML/CSS/JS puro.
 
 ## Arquivos principais
 
-- `index.html` — estrutura da Home.
-- `assets/css/home.css` — visual, posições, envelope e botões.
-- `assets/js/home.js` — clique para abrir o envelope.
-- `assets/img/igreja-aquarela.jpg` — imagem da igreja.
+- `index.html` — página inicial.
+- `assets/css/home.css` — estilos da Home.
+- `assets/js/home.js` — clique de abertura.
+- `assets/img/igreja-aquarela.jpg` — fundo principal.
+- `assets/img/envelope-reference.jpg` — usado como textura suave do fundo.
 
-## Ajustes rápidos
+## Como alterar os links do menu
 
-### Mover o menu para cima ou para baixo
+Abra `index.html` e edite os `href`:
 
-Arquivo: `assets/css/home.css`
+```html
+<a class="menu-card" href="convite.html">
+```
 
-Procure:
+Troque `convite.html` pelo destino desejado.
+
+## Como alterar nomes dos botões
+
+No mesmo bloco, altere o texto:
+
+```html
+<span>Convite</span>
+```
+
+## Como ajustar posição dos botões
+
+Abra `assets/css/home.css` e procure:
 
 ```css
 .menu {
-  top: 43vh;
+  right: 15px;
+  top: 39.5vh;
+  width: min(50vw, 228px);
 }
 ```
 
-Aumente para descer; diminua para subir.
+- `right` move o menu para a esquerda/direita.
+- `top` move para cima/baixo.
+- `width` muda a largura dos botões.
 
-### Aumentar ou diminuir os botões
+## Como ajustar o envelope
 
-Procure:
+Procure no CSS:
 
 ```css
-.menu-card {
-  min-height: clamp(43px, 6.25vh, 53px);
+.envelope-area {
+  top: ...;
+  width: ...;
 }
 ```
 
-### Mover a igreja
+- `top` move o envelope para cima/baixo.
+- `width` aumenta ou diminui.
 
-Procure:
+## Como deixar o menu aberto automaticamente para testes
 
-```css
-.church {
-  width: 97vw;
-  left: -18vw;
-  bottom: 1.6vh;
-}
+Abra `assets/js/home.js` e remova o comentário desta linha:
+
+```js
+// setTimeout(openHome, 700);
 ```
 
-- `width`: tamanho da imagem.
-- `left`: deslocamento horizontal.
-- `bottom`: altura em relação à base da tela.
+Ficará assim:
 
-### Ajustar espessura das linhas do envelope
-
-Procure:
-
-```css
-border: .65px solid var(--purple-line);
+```js
+setTimeout(openHome, 700);
 ```
 
-Use `.5px`, `.7px` ou `1px`.
+## Publicação no GitHub Pages
 
-### Trocar links do menu
+Suba todos os arquivos na raiz do repositório e acesse:
 
-No `index.html`, altere os valores `href="..."`.
+```text
+https://julioprecoma.github.io/convite-casamento-thaisegiovanni/
+```
