@@ -1,1 +1,452 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>transporte</title><style>body{margin:0;min-height:100svh;display:grid;place-items:center;background:#f4eee8;color:#4d3a52;font-family:Georgia,serif;text-align:center;padding:24px}a{color:inherit}.box{border:1px solid #9a7aa0;border-radius:14px;padding:28px;background:rgba(255,255,255,.45)}</style></head><body><div class="box"><h1>transporte</h1><p>Página reservada para a próxima etapa.</p><p><a href="index.html">Voltar ao menu</a></p></div></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Convite de Casamento</title>
+  <meta name="description" content="Convite de casamento Thaís e Giovanni" />
+  <style>
+@font-face {
+  font-family: "Asfire";
+  src: url("assets/fonts/Asfire.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("assets/fonts/PlayfairDisplay-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --bg: #f7efe9;
+  --paper: #fff8ee;
+  --paper-2: #efe1d2;
+  --purple: #7c5a82;
+  --purple-line: rgba(82, 54, 91, .55);
+  --ink: #76527d;
+  --card: rgba(255, 249, 243, .86);
+  --shadow: rgba(64, 43, 69, .15);
+}
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.home {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 8% 17%, rgba(255,255,255,.94), transparent 28%),
+    radial-gradient(circle at 72% 18%, rgba(201, 182, 207, .22), transparent 34%),
+    radial-gradient(circle at 76% 84%, rgba(206, 183, 211, .32), transparent 36%),
+    linear-gradient(135deg, #fbf7f1 0%, #f3ebe4 53%, #eadfe7 100%);
+}
+
+.home::before {
+  content: "";
+  position: absolute;
+  inset: -2%;
+  z-index: -4;
+  background-image: url("assets/img/envelope-reference.jpg");
+  background-size: cover;
+  background-position: center top;
+  opacity: .045;
+  filter: blur(2px) saturate(.85);
+}
+
+.wash {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(24px);
+  opacity: .34;
+  pointer-events: none;
+}
+
+.wash--top {
+  width: 68vw;
+  height: 24vh;
+  left: 15vw;
+  top: 6vh;
+  background: rgba(201, 217, 224, .50);
+}
+
+.wash--right {
+  width: 44vw;
+  height: 62vh;
+  right: -18vw;
+  top: 27vh;
+  background: rgba(190, 157, 196, .30);
+}
+
+.church {
+  position: absolute;
+  z-index: -1;
+  left: -19vw;
+  bottom: 1.2vh;
+  width: min(102vw, 620px);
+  max-width: none;
+  opacity: 0;
+  mix-blend-mode: multiply;
+  filter: saturate(.82) contrast(.94) brightness(1.04);
+  pointer-events: none;
+  transform: translateY(22px) scale(.985);
+  transition: opacity 1100ms ease 520ms, transform 1100ms cubic-bezier(.18,.72,.2,1) 520ms;
+}
+
+.branch {
+  position: absolute;
+  z-index: 1;
+  width: 92px;
+  height: 330px;
+  opacity: .50;
+  border-left: 1px solid rgba(124, 90, 130, .28);
+  transform-origin: bottom center;
+  pointer-events: none;
+  transition: opacity 700ms ease;
+}
+
+.branch::before,
+.branch::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 40px;
+  border-radius: 80% 15% 80% 15%;
+  background: rgba(124, 90, 130, .26);
+  box-shadow:
+    15px 34px 0 rgba(124, 90, 130, .20),
+    -3px 70px 0 rgba(124, 90, 130, .22),
+    17px 108px 0 rgba(124, 90, 130, .18),
+    0 146px 0 rgba(124, 90, 130, .20),
+    15px 184px 0 rgba(124, 90, 130, .17),
+    -1px 222px 0 rgba(124, 90, 130, .16);
+}
+
+.branch::before { left: -28px; top: 14px; transform: rotate(-42deg); }
+.branch::after { left: 8px; top: 32px; transform: rotate(42deg); }
+
+.branch--left { left: 4vw; top: 11vh; transform: rotate(-18deg); }
+.branch--right { right: -12px; top: 3vh; transform: rotate(14deg); }
+.branch--menu { right: -18px; bottom: 11vh; height: 420px; opacity: 0; transform: rotate(11deg); transition: opacity 900ms ease 760ms; }
+
+.envelope-area {
+  position: absolute;
+  z-index: 6;
+  top: max(72px, calc(env(safe-area-inset-top) + 70px));
+  left: 50%;
+  width: min(82vw, 500px);
+  transform: translateX(-50%);
+  text-align: center;
+  opacity: 1;
+  transition: opacity 620ms ease 420ms, transform 720ms cubic-bezier(.18,.72,.2,1) 420ms;
+}
+
+.envelope-button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
+  color: var(--purple);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.envelope {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 2.07 / 1;
+  margin: 0 auto 18px;
+  perspective: 900px;
+}
+
+.envelope__shadow {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -8%;
+  height: 23%;
+  border-radius: 50%;
+  background: rgba(56, 38, 60, .16);
+  filter: blur(16px);
+}
+
+.envelope__back,
+.envelope__flap {
+  position: absolute;
+  display: block;
+  inset: 15% 4.5% 9%;
+  background: linear-gradient(145deg, #fff9ef 0%, #f2e7d9 58%, #e7d6c7 100%);
+  border: .55px solid var(--purple-line);
+  box-shadow: 0 14px 28px var(--shadow);
+}
+
+.envelope__flap { box-shadow: none; }
+
+.envelope__flap--top {
+  z-index: 6;
+  clip-path: polygon(0 0, 50% 62%, 100% 0, 50% 100%);
+  transform-origin: 50% 0;
+  background: linear-gradient(145deg, #fffaf1 0%, #efe1d2 100%);
+  transition: transform 880ms cubic-bezier(.2,.78,.18,1), filter 880ms ease;
+  backface-visibility: hidden;
+}
+
+.envelope__flap--left { z-index: 4; clip-path: polygon(0 0, 50% 50%, 0 100%); background: linear-gradient(140deg, #fbf1e4 0%, #ead9ca 100%); }
+.envelope__flap--right { z-index: 4; clip-path: polygon(100% 0, 50% 50%, 100% 100%); background: linear-gradient(220deg, #fbf1e4 0%, #ead9ca 100%); }
+.envelope__flap--bottom { z-index: 7; clip-path: polygon(0 100%, 50% 47%, 100% 100%); background: linear-gradient(180deg, #f6eadc 0%, #eadbcc 100%); }
+
+.envelope__seal {
+  position: absolute;
+  z-index: 9;
+  width: 15.5%;
+  aspect-ratio: 1;
+  left: 42.25%;
+  top: 47%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 39% 35%, rgba(255,255,255,.20), transparent 26%),
+    radial-gradient(circle, #9b7ea4 0 47%, #795d83 49% 62%, #b295b8 63% 66%, #72547c 68%);
+  box-shadow: 0 6px 13px rgba(54, 38, 58, .25);
+  transition: opacity 420ms ease;
+}
+
+.envelope__seal::after {
+  content: "✤";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 246, 241, .62);
+  font-size: clamp(13px, 4vw, 22px);
+}
+
+.ornament { display: block; color: var(--purple); font-size: 17px; opacity: .82; }
+.tap-text {
+  display: block;
+  margin-top: 10px;
+  color: var(--purple);
+  font-size: clamp(12px, 3.25vw, 16px);
+  letter-spacing: .20em;
+  text-transform: uppercase;
+}
+
+.menu {
+  position: absolute;
+  z-index: 5;
+  right: clamp(17px, 5vw, 38px);
+  top: 40.5vh;
+  width: min(46.5vw, 360px);
+  display: grid;
+  gap: clamp(8px, 1vh, 12px);
+  opacity: 0;
+  transform: translateX(18px);
+  pointer-events: none;
+  transition: opacity 620ms ease 980ms, transform 620ms cubic-bezier(.2,.74,.22,1) 980ms;
+}
+
+.menu-card {
+  min-height: clamp(42px, 6.1vh, 60px);
+  display: grid;
+  grid-template-columns: 34px 1px 1fr 14px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+  border: .8px solid rgba(124, 90, 130, .55);
+  border-radius: 9px;
+  background: var(--card);
+  box-shadow: 0 8px 18px rgba(75, 52, 78, .08);
+  backdrop-filter: blur(3px);
+  text-decoration: none;
+  color: var(--ink);
+  font-size: clamp(11px, 3vw, 18px);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transform: translateX(14px);
+  opacity: 0;
+}
+
+.menu-card::before {
+  content: "";
+  width: 1px;
+  height: 56%;
+  background: rgba(124, 90, 130, .34);
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.menu-card__icon { width: 27px; height: 27px; justify-self: center; grid-column: 1; display: grid; place-items: center; }
+.menu-card__icon svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 1.18; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.menu-card span:nth-child(2) { grid-column: 3; }
+.menu-card__arrow { grid-column: 4; font-size: 24px; line-height: 1; opacity: .82; margin-top: -2px; }
+
+body.opened .envelope__flap--top { transform: rotateX(168deg); filter: brightness(1.02); }
+body.opened .envelope__seal { opacity: 0; }
+body.opened .envelope-area { opacity: 0; transform: translateX(-50%) translateY(-18px) scale(.97); pointer-events: none; }
+body.opened .church { opacity: .76; transform: translateY(0) scale(1); }
+body.opened .branch--menu { opacity: .48; }
+body.opened .menu { opacity: 1; transform: translateX(0); pointer-events: auto; }
+body.opened .menu-card { animation: menuCardIn 500ms cubic-bezier(.18,.72,.24,1) forwards; }
+body.opened .menu-card:nth-child(1) { animation-delay: 1030ms; }
+body.opened .menu-card:nth-child(2) { animation-delay: 1085ms; }
+body.opened .menu-card:nth-child(3) { animation-delay: 1140ms; }
+body.opened .menu-card:nth-child(4) { animation-delay: 1195ms; }
+body.opened .menu-card:nth-child(5) { animation-delay: 1250ms; }
+body.opened .menu-card:nth-child(6) { animation-delay: 1305ms; }
+body.opened .menu-card:nth-child(7) { animation-delay: 1360ms; }
+body.opened .menu-card:nth-child(8) { animation-delay: 1415ms; }
+
+.envelope-button:focus-visible,
+.menu-card:focus-visible { outline: 2px solid rgba(124, 90, 130, .78); outline-offset: 5px; }
+
+@keyframes menuCardIn { to { opacity: 1; transform: translateX(0); } }
+
+@media (max-width: 460px) and (orientation: portrait) {
+  .envelope-area { top: max(66px, calc(env(safe-area-inset-top) + 58px)); width: 84vw; }
+  .church { width: 103vw; left: -22vw; bottom: 3.2vh; }
+  .branch--left { left: 5vw; top: 12vh; opacity: .42; }
+  .branch--right { right: 1vw; top: 5vh; opacity: .42; }
+  .branch--menu { right: -25px; bottom: 9vh; height: 420px; }
+  .menu { top: 39.5vh; right: 13px; width: min(46vw, 220px); gap: 8px; }
+  .menu-card { grid-template-columns: 31px 1px 1fr 12px; gap: 8px; padding: 0 8px; min-height: clamp(40px, 5.65vh, 50px); border-radius: 8px; font-size: clamp(10.5px, 2.95vw, 14px); letter-spacing: .07em; }
+  .menu-card__icon { width: 23px; height: 23px; }
+  .menu-card__icon svg { width: 21px; height: 21px; }
+  .menu-card__arrow { font-size: 20px; }
+}
+
+@media (max-width: 380px) and (orientation: portrait) {
+  .envelope-area { width: 86vw; top: 58px; }
+  .church { width: 107vw; left: -25vw; bottom: 3vh; }
+  .menu { width: 49vw; right: 9px; top: 39vh; gap: 7px; }
+  .menu-card { font-size: 10px; min-height: 38px; }
+  .menu-card__icon svg { width: 19px; height: 19px; }
+}
+
+@media (orientation: landscape) and (max-height: 620px) {
+  .envelope-area { width: min(34vw, 360px); left: 24%; top: max(26px, env(safe-area-inset-top)); }
+  .church { width: min(58vw, 700px); left: 4vw; bottom: -10vh; }
+  .branch--left { display: none; }
+  .branch--right { right: 1vw; top: 2vh; height: 270px; }
+  .branch--menu { right: 4vw; bottom: 5vh; height: 330px; }
+  .menu { top: 10vh; right: 8vw; width: min(34vw, 380px); gap: 8px; }
+  .menu-card { min-height: min(10.2vh, 51px); font-size: clamp(12px, 2.05vw, 18px); }
+  .tap-text { font-size: 12px; }
+}
+
+  </style>
+</head>
+<body>
+  <main class="home" aria-label="Abertura do convite">
+    <section class="home__art" aria-hidden="true">
+      <div class="wash wash--top"></div>
+      <div class="wash wash--right"></div>
+      <div class="branch branch--left"></div>
+      <div class="branch branch--right"></div>
+      <div class="branch branch--menu"></div>
+      <img class="church" src="assets/img/igreja-aquarela.jpg" alt="" />
+    </section>
+
+    <section class="envelope-area" aria-label="Abrir convite">
+      <button class="envelope-button" id="openInvitation" type="button" aria-label="Toque para abrir o convite">
+        <span class="envelope" aria-hidden="true">
+          <span class="envelope__shadow"></span>
+          <span class="envelope__back"></span>
+          <span class="envelope__flap envelope__flap--top"></span>
+          <span class="envelope__flap envelope__flap--left"></span>
+          <span class="envelope__flap envelope__flap--right"></span>
+          <span class="envelope__flap envelope__flap--bottom"></span>
+          <span class="envelope__seal"></span>
+        </span>
+        <span class="ornament">✤</span>
+        <span class="tap-text">Toque para abrir</span>
+      </button>
+    </section>
+
+    <nav class="menu" id="menu" aria-label="Menu principal">
+      <a class="menu-card" href="convite.html">
+        <span class="menu-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 6.5h18v11H3z"/><path d="m3 7 9 7 9-7"/><path d="m3 17 6.5-5"/><path d="m21 17-6.5-5"/></svg>
+        </span>
+        <span>Convite</span><span class="menu-card__arrow">›</span>
+      </a>
+      <a class="menu-card" href="cerimonia.html">
+        <span class="menu-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3v4"/><path d="M10 5h4"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-7h6v7"/><path d="M7 12h10"/></svg>
+        </span>
+        <span>Cerimônia</span><span class="menu-card__arrow">›</span>
+      </a>
+      <a class="menu-card" href="festa.html">
+        <span class="menu-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 3h3l-1 8a3 3 0 1 1-3 0z"/><path d="M16 3h3l-1 8a3 3 0 1 1-3 0z"/><path d="M8.5 14v6"/><path d="M16.5 14v6"/><path d="M6 21h5"/><path d="M14 21h5"/></svg>
+        </span>
+        <span>Festa</span><span class="menu-card__arrow">›</span>
+      </a>
+      <a class="menu-card" href="presentes.html">
+        <span class="menu-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 10h16v11H4z"/><path d="M3 7h18v3H3z"/><path d="M12 7v14"/><path d="M12 7s-5 0-5-3a2 2 0 0 1 4 0c0 3 1 3 1 3z"/><path d="M12 7s5 0 5-3a2 2 0 0 0-4 0c0 3-1 3-1 3z"/></svg>
+        </span>
+        <span>Presentes</span><span class="menu-card__arrow">›</span>
+      </a>
+      <a class="menu-card" href="hospedagem.html">
+        <span class="menu-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 12h16v7"/><path d="M4 19V7"/><path d="M4 11h7v4"/><path d="M11 15h9"/><path d="M6 19v2"/><path d="M18 19v2"/></svg>
+        </span>
+        <span>Hospedagem</span><span class="menu-card__arrow">›</span>
+      </a>
+      <a class="menu-card" href="transporte.html">
+        <span class="menu-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 17h14"/><path d="M6 17v2"/><path d="M18 17v2"/><path d="M4 13l2-5h12l2 5v4H4z"/><path d="M7 14h.1"/><path d="M17 14h.1"/></svg>
+        </span>
+        <span>Transporte</span><span class="menu-card__arrow">›</span>
+      </a>
+      <a class="menu-card" href="presenca.html">
+        <span class="menu-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="m8.5 12.5 2.4 2.4 4.8-5"/></svg>
+        </span>
+        <span>Presença</span><span class="menu-card__arrow">›</span>
+      </a>
+      <a class="menu-card" href="recados.html">
+        <span class="menu-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9-9a4.3 4.3 0 0 1 7-4.8L12 8l2-1.8a4.3 4.3 0 0 1 7 4.8c-2 4.6-9 9-9 9z"/></svg>
+        </span>
+        <span>Recados</span><span class="menu-card__arrow">›</span>
+      </a>
+    </nav>
+  </main>
+
+  <script>
+const openButton = document.getElementById('openInvitation');
+
+function openHome() {
+  document.body.classList.add('opened');
+  openButton.setAttribute('aria-label', 'Convite aberto');
+}
+
+openButton.addEventListener('click', openHome);
+openButton.addEventListener('touchstart', () => {}, { passive: true });
+
+// Durante testes, remova o comentário abaixo para abrir o menu automaticamente.
+// setTimeout(openHome, 700);
+
+  </script>
+</body>
+</html>
