@@ -1,1 +1,17 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>festa</title><style>body{margin:0;min-height:100svh;display:grid;place-items:center;background:#f4eee8;color:#4d3a52;font-family:Georgia,serif;text-align:center;padding:24px}a{color:inherit}.box{border:1px solid #9a7aa0;border-radius:14px;padding:28px;background:rgba(255,255,255,.45)}</style></head><body><div class="box"><h1>festa</h1><p>Página reservada para a próxima etapa.</p><p><a href="index.html">Voltar ao menu</a></p></div></body></html>
+# Thaís e Giovanni — Home v6
+
+Versão de segurança para GitHub Pages.
+
+## Como publicar
+
+1. Apague os arquivos antigos do repositório ou substitua todos.
+2. Envie o conteúdo desta pasta na raiz do repositório, não envie a pasta inteira dentro do repositório.
+3. O arquivo `index.html` deve aparecer na primeira tela do repositório.
+4. Ative GitHub Pages em Settings > Pages > Deploy from branch > main > /root.
+5. Abra:
+
+`https://julioprecoma.github.io/convite-casamento-thaisegiovanni/?v=6`
+
+## Observação
+
+Esta versão remove fontes externas do CSS para evitar que o navegador abra arquivo `.ttf`/`.woff2` por engano quando houver upload incorreto.
